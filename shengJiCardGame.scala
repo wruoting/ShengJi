@@ -29,8 +29,7 @@ Return: Array with one value for each card
     //Start the game by distributing cards
     //One cycle of card distribution
     var distributedCardList = distributeCards(cardBase,trumpCard,trumpSuit)
-    //Give an opportunity for the trump suit to show
-    //Iterate through dealing
+
 
     return cardBase
   }
@@ -60,48 +59,62 @@ This function serves as a way of giving each player a randomly preset hand. Iter
         }
         //Find out what card it is
         cardNumber=innerCardIndex
-        if(cardNumber==0) {
-    }
 
       //Now you have the random card index, in which you can give to player 1, 2, 3 or 4
       //Redefine which of the 4 players it should go to
       val realPlayerCount=playerCount%4
       cardBase(suitNumber)(cardNumber) = GlobalMappings.cardState(GlobalMappings.playerCardState(realPlayerCount))
       //Set as trump card for player if necessary
-      if (cardNumber==trumpCard) {
-        cardBase(suitNumber)(cardNumber) = -realPlayerCount
+      if ((cardNumber==trumpCard || (cardNumber%13)==trumpCard) && cardNumber != 26) {
+        cardBase(suitNumber)(cardNumber) = -GlobalMappings.cardState(GlobalMappings.playerCardState(realPlayerCount))
       }
 
       //After giving the player the card, wait 0.5 seconds, and then decide if it's a trump to show
-
       showCards(cardBase)
+      //Build an array of only trump suit cards
+      var trumpBase=Array.ofDim[Int](4,2)
+        for(row <- 0 to 3) {
+          for(col <- 0 to 1) {
+            if(col==0) {
+              trumpBase(row)(col)=cardBase(row)(trumpCard)
+            }
+            else {
+              trumpBase(row)(col)=cardBase(row)(trumpCard+13)
+            }
+          }
+        }
 
-      //Thread.sleep(2000)
 
-
-      //Build array of the trump card, then determine if trump card is out there
-      // var trumpSubsetCardBase = Array.ofDim[Int](8)
-      // var trumpCardCount=0
-      // for(deck <- 0 to 1) {
-      //   for(suit<- 0 to 3) {
-      //      trumpSubsetCardBase(trumpCardCount)=cardBase(suit)(trumpCard)(deck)
-      //      trumpCardCount+=1
-      //   }
+    //  actionlistener() //you might have to make some action listener here
+      /*
+      var trumpSuitDeclarePlayer = -1
+      trumpSuitDeclarePlayer = clickPlayer(trumpBase, //return a player that "clicked". Input will be a player number, output will be if successful
+      if(trumpSuitDeclarePlayer != -1) {
+        var trumpStatus=interruptSuit(trumpBase,trumpCard,trumpSuitDeclarePlayer) //check to see if this player can overturn
+        if (trumpStatus) {
+          //change those values to onboard instead of trump
+        }
       // }
       //Give player an option to overturn current suit
 
     }
+    */
+    //we will default declare a trump suit and card
+    cardBase(0)(1)=8 //will have p1 start
+    }
     return cardBase
-  }
+}
 /***
 Use: To interrupt with a show of suits. Determines if there has been a shown trump suit
 Parameters: Card Base,Trump suit,Current Player
 Return: Array with one value for each card
 ***/
-  def interruptSuit(cardBase: Array[Array[Int]],trumpCard: Int,currentPlayer: Int,trumpStatus: Boolean): Array[Array[Int]]= {
+  def interruptSuit(cardBase: Array[Array[Int]],trumpCard: Int,currentPlayer: Int): Boolean= {
+    var trumpStatus = false
+    val mappedCurrentPlayer = GlobalMappings.cardState(GlobalMappings.playerCardState(currentPlayer))
 
     //Check if trump suit is available for current player
-    return cardBase
+    return trumpStatus
   }
 
 
