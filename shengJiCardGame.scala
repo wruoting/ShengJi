@@ -1,5 +1,5 @@
 //ANSI Shadow was used for headers
-object shengJiCardGame{
+object shengJiCardGame extends ShengJiGui{
 /***
 Parameters: Number of Decks
 Return: Array with one value for each card
@@ -168,7 +168,8 @@ def showCards(cardBase: Array[Array[Int]]) {
 ██║██║ ╚████║██║   ██║   ██║██║  ██║███████╗██║███████╗██║  ██║   ██║   ██║╚██████╔╝██║ ╚████║
 ╚═╝╚═╝  ╚═══╝╚═╝   ╚═╝   ╚═╝╚═╝  ╚═╝╚══════╝╚═╝╚══════╝╚═╝  ╚═╝   ╚═╝   ╚═╝ ╚═════╝ ╚═╝  ╚═══╝
 */
-
+    val ui=new ShengJiGui
+    ui.visible = true
     while(gameState) {
       //Initialize
       startGame(cardBase,trumpCard,trumpSuit)
