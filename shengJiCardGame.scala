@@ -1,5 +1,5 @@
 //ANSI Shadow was used for headers
-object shengJiCardGame extends ShengJiGui{
+object shengJiCardGame{
 /***
 Parameters: Number of Decks
 Return: Array with one value for each card
@@ -25,11 +25,14 @@ Use: Creates an Empty CardBase
 Parameters: Default mapping of Cards, Card Base,Trump suit
 Return: Array with one value for each card
 ***/
-  def startGame(cardBase: Array[Array[Int]],trumpCard: Int,trumpSuit: Int) : Array[Array[Int]] = {
+  def startGame(cardBase: Array[Array[Int]],trumpCard: Int,trumpSuit: Int,ui: ShengJiGui) : Array[Array[Int]] = {
+
     //Start the game by distributing cards
     //One cycle of card distribution
     var distributedCardList = distributeCards(cardBase,trumpCard,trumpSuit)
-
+    // if(ui.contents==1) {
+    //   println("test")
+    // }
 
     return cardBase
   }
@@ -70,7 +73,7 @@ This function serves as a way of giving each player a randomly preset hand. Iter
       }
 
       //After giving the player the card, wait 0.5 seconds, and then decide if it's a trump to show
-      showCards(cardBase)
+    //  showCards(cardBase)
       //Build an array of only trump suit cards
       var trumpBase=Array.ofDim[Int](4,2)
         for(row <- 0 to 3) {
@@ -172,7 +175,7 @@ def showCards(cardBase: Array[Array[Int]]) {
     ui.visible = true
     while(gameState) {
       //Initialize
-      startGame(cardBase,trumpCard,trumpSuit)
+      startGame(cardBase,trumpCard,trumpSuit,ui)
       //playGame()
       gameState=false
 
@@ -180,6 +183,7 @@ def showCards(cardBase: Array[Array[Int]]) {
 
     }
 }
+
 /*
 ███╗   ███╗ █████╗ ██████╗ ██████╗ ██╗███╗   ██╗ ██████╗
 ████╗ ████║██╔══██╗██╔══██╗██╔══██╗██║████╗  ██║██╔════╝
