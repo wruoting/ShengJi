@@ -25,7 +25,7 @@ Use: Creates an Empty CardBase
 Parameters: Default mapping of Cards, Card Base,Trump suit
 Return: Array with one value for each card
 ***/
-  def startGame(cardBase: Array[Array[Int]],trumpCard: Int,trumpSuit: Int,ui: ShengJiGui) : Array[Array[Int]] = {
+  def startGame(cardBase: Array[Array[Int]],trumpCard: Int,trumpSuit: Int) : Array[Array[Int]] = {
 
     //Start the game by distributing cards
     //One cycle of card distribution
@@ -171,11 +171,9 @@ def showCards(cardBase: Array[Array[Int]]) {
 ██║██║ ╚████║██║   ██║   ██║██║  ██║███████╗██║███████╗██║  ██║   ██║   ██║╚██████╔╝██║ ╚████║
 ╚═╝╚═╝  ╚═══╝╚═╝   ╚═╝   ╚═╝╚═╝  ╚═╝╚══════╝╚═╝╚══════╝╚═╝  ╚═╝   ╚═╝   ╚═╝ ╚═════╝ ╚═╝  ╚═══╝
 */
-    val ui=new ShengJiGui
-    ui.visible = true
     while(gameState) {
       //Initialize
-      startGame(cardBase,trumpCard,trumpSuit,ui)
+      startGame(cardBase,trumpCard,trumpSuit)
       //playGame()
       gameState=false
 
