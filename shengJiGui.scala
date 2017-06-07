@@ -1,5 +1,5 @@
-// import org.newdawn.slick._
-//
-// class ShengJiGui extends BasicGame ("test") {
-//
-// }
+import org.newdawn.slick._
+
+class ShengJiGui extends BasicGame ("test") {
+
+}

@@ -16,6 +16,6 @@ unmanagedBase := baseDirectory.value/"lib"
 fork := true
 
 // add a JVM option to use when forking a JVM for 'run'
-javaOptions += "-Xmx8G"
+javaOptions += "-Djava.library.path=./lib/native/windows"
 
 javaHome := Some(file("E:/Java"))
