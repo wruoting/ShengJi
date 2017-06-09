@@ -6,25 +6,34 @@ import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Image;
 
 class ShengJiGui extends BasicGame("Sheng Ji") {
+
 	@throws(classOf[SlickException])
 	override def init(gc: GameContainer) {
+		var windowHeight = gc.getHeight()
+		var windowWidth = gc.getWidth()
 	}
 
 	@throws(classOf[SlickException])
-	override def update(gc:GameContainer, i: Int) {
+	override def update(gc: GameContainer, i: Int) {
+
 	}
 
 	@throws(classOf[SlickException])
 	override def render(gc: GameContainer, g: Graphics) {
-		g.drawString("Howdy!", 100, 100)
+		var testImage = new Image("E:/Programming/Java/ShengJi/ShengJi/image/2_of_clubs.png")
+		var newImage=testImage.getScaledCopy(100,200)
+		newImage.draw(100,100)
+
 	}
 
 	def loadGameGui {
 		    try {
 					val appgc = new AppGameContainer(new ShengJiGui())
-					appgc.setDisplayMode(640, 480, false)
+					appgc.setDisplayMode(700, 700, false)
+					appgc.setTargetFrameRate(70)
 					appgc.start()
 				}
 				catch {
